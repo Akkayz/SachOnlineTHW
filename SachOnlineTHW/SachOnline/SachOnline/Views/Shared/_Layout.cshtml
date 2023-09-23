@@ -59,20 +59,22 @@
         <!-- /.container-->
         <!-- /.container-->
     </nav>
+
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div id="carousel1" class="carousel slide">
                     <ol class="carousel-indicators">
-                        <li data-target="#carousel1" data-slide-to="0" class="active1"> </li>
-                        <li data-target="#carousel1" data-slide-to="1" class="active2"> </li>
-                        <li data-target="#carousel1" data-slide-to="2" class="active3"> </li>
-                        <li data-target="#carousel1" data-slide-to="3" class="active4"> </li>
-                        <li data-target="#carousel1" data-slide-to="4" class="active5"> </li>
-                        <li data-target="#carousel1" data-slide-to="5" class="active6"> </li>
+                        <li data-target="#carousel1" data-slide-to="0" class="active"> </li>
+                        <li data-target="#carousel1" data-slide-to="1" class="active1"> </li>
+                        <li data-target="#carousel1" data-slide-to="2" class="active2"> </li>
+                        <li data-target="#carousel1" data-slide-to="3" class="active3"> </li>
+                        <li data-target="#carousel1" data-slide-to="4" class="active4"> </li>
+                        <li data-target="#carousel1" data-slide-to="5" class="active5"> </li>
+
                     </ol>
                     <div class="carousel-inner">
-                        <div class="item active1">
+                        <div class="item active">
                             <img class="img-responsive" src="Images/Slider/01.jpg" alt="thumb">
                             <div class="carousel-caption"> Quảng cáo 1 </div>
                         </div>
@@ -80,19 +82,19 @@
                             <img class="img-responsive" src="Images/Slider/02.jpg" alt="thumb">
                             <div class="carousel-caption"> Quảng cáo 2 </div>
                         </div>
-                        <div class="item active3">
+                        <div class="item active2">
                             <img class="img-responsive" src="Images/Slider/03.jpg" alt="thumb">
                             <div class="carousel-caption"> Quảng cáo 3 </div>
                         </div>
-                        <div class="item active4">
+                        <div class="item active3">
                             <img class="img-responsive" src="Images/Slider/04.jpg" alt="thumb">
                             <div class="carousel-caption"> Quảng cáo 4 </div>
                         </div>
-                        <div class="item active5">
+                        <div class="item active4">
                             <img class="img-responsive" src="Images/Slider/05.jpg" alt="thumb">
                             <div class="carousel-caption"> Quảng cáo 5 </div>
                         </div>
-                        <div class="item active6">
+                        <div class="item active5">
                             <img class="img-responsive" src="Images/Slider/06.jpg" alt="thumb">
                             <div class="carousel-caption"> Quảng cáo 6 </div>
                         </div>
@@ -106,34 +108,178 @@ prev"></span>
                 </div>
             </div>
         </div>
+    </div>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <!--CHỦ ĐỀ và NHÀ XUẤT BẢN-->
+                <ul class="list-group">
+                    <li class="list-group-item active" style="font-weight:bold; text-align:center">SÁCH THEO CHỦ ĐỀ</li>
+                    <a href="#" class="list-group-item">Ngoại ngữ</a>
+                    <a href="#" class="list-group-item">Công nghệ thông tin</a>
+                    <a href="#" class="list-group-item">Luật</a>
+                    <a href="#" class="list-group-item">Văn học</a>
+                    <a href="#" class="list-group-item">Khoa học kỹ thuật</a>
+                    <a href="#" class="list-group-item">Nông nghiệp</a>
+                    <a href="#" class="list-group-item">Lịch sử, địa lý</a>
+                    <a href="#" class="list-group-item">Kinh tế</a>
+                    <a href="#" class="list-group-item">Nghệ thuật sống</a>
+                    <li class="list-group-item active" style="font-weight:bold; text-align:center">SÁCH THEO NHÀ XUẤT BẢN</li>
+                    <a href="#" class="list-group-item">Nhà xuất bản trẻ</a>
+                    <a href="#" class="list-group-item">NXB Thống kê</a>
+                    <a href="#" class="list-group-item">Kim Đồng</a>
+                    <a href="#" class="list-group-item">Đại học quốc gia</a>
+                    <a href="#" class="list-group-item">Văn Hóa nghệ thuật</a>
+                    <a href="#" class="list-group-item">Văn hóa</a>
+                    <a href="#" class="list-group-item">Lao động và Xã hội</a>
+                    <a href="#" class="list-group-item">Khoa học và kỹ thuật</a>
+                </ul>
+                <br>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <h2 class="text-center">SÁCH MỚI</h2>
+                <hr>
+                <div class="row text-center">
+                    <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
+                        <div class="thumbnail">
+                            <img src="Images/130499.jpg" alt="Thumbnail Image 1" class="img-
+responsive img-rounded imgbook ">
+                            <div class="caption">
+                                <h3>Sản phẩm 1</h3>
+                                <p>Mô tả tóm tắt sản phẩm 1</p>
+                                <p>
+                                    <a href="#" class="btn btn-primary" role="button">
+                                        <span class="glyphicon glyphicon-
+shopping-cart" aria-hidden="true"></span> Add to Cart
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
+                        <div class="thumbnail">
+                            <img src="Images/130499.jpg" alt="Thumbnail Image 1" class="img-
+responsive img-rounded imgbook ">
+                            <div class="caption">
+                                <h3>Sản phẩm 1</h3>
+                                <p>Mô tả tóm tắt sản phẩm 1</p>
+                                <p>
+                                    <a href="#" class="btn btn-primary" role="button">
+                                        <span class="glyphicon glyphicon-
+shopping-cart" aria-hidden="true"></span> Add to Cart
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
+                        <div class="thumbnail">
+                            <img src="Images/130499.jpg" alt="Thumbnail Image 1" class="img-
+responsive img-rounded imgbook ">
+                            <div class="caption">
+                                <h3>Sản phẩm 1</h3>
+                                <p>Mô tả tóm tắt sản phẩm 1</p>
+                                <p>
+                                    <a href="#" class="btn btn-primary" role="button">
+                                        <span class="glyphicon glyphicon-
+shopping-cart" aria-hidden="true"></span> Add to Cart
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
+                        <div class="thumbnail">
+                            <img src="Images/130499.jpg" alt="Thumbnail Image 1" class="img-
+responsive img-rounded imgbook ">
+                            <div class="caption">
+                                <h3>Sản phẩm 1</h3>
+                                <p>Mô tả tóm tắt sản phẩm 1</p>
+                                <p>
+                                    <a href="#" class="btn btn-primary" role="button">
+                                        <span class="glyphicon glyphicon-
+shopping-cart" aria-hidden="true"></span> Add to Cart
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
+                        <div class="thumbnail">
+                            <img src="Images/130499.jpg" alt="Thumbnail Image 1" class="img-
+responsive img-rounded imgbook ">
+                            <div class="caption">
+                                <h3>Sản phẩm 1</h3>
+                                <p>Mô tả tóm tắt sản phẩm 1</p>
+                                <p>
+                                    <a href="#" class="btn btn-primary" role="button">
+                                        <span class="glyphicon glyphicon-
+shopping-cart" aria-hidden="true"></span> Add to Cart
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
+                        <div class="thumbnail">
+                            <img src="Images/130499.jpg" alt="Thumbnail Image 1" class="img-
+responsive img-rounded imgbook ">
+                            <div class="caption">
+                                <h3>Sản phẩm 1</h3>
+                                <p>Mô tả tóm tắt sản phẩm 1</p>
+                                <p>
+                                    <a href="#" class="btn btn-primary" role="button">
+                                        <span class="glyphicon glyphicon-
+shopping-cart" aria-hidden="true"></span> Add to Cart
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="text-center">
+                        <ul class="pagination">
+                            <li> <a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a> </li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li class="disabled"><a href="#">5</a></li>
+                            <li> <a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+            <div class="container">
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 </body>
 </html>
