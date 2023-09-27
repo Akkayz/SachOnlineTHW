@@ -4,120 +4,105 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>@ViewBag.Title</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <style type="text/css">
-        .imgbook {
-            transition: all 1s ease-in;
-            width: 400px;
-        }
-
-            .imgbook:hover {
-                transform: scale(0.9);
-                cursor: pointer;
-            }
-
-        .imgsachbannhieu {
-            width: 100px;
-        }
-    </style>
 </head>
 
 <body>
-        <nav class="navbar navbar-inverse">
-            <!--navbar-fixed-top-->
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-
-                            target="#navbar1" aria-expanded="false">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">SÁCH ONLINE</a>
-                    <a class="navbar-brand" href="#">TRANG CHỦ</a>
-                    <a class="navbar-brand" href="#">GIỚI THIỆU</a>
-                    <a class="navbar-brand" href="#">LIÊN HỆ</a>
-                </div>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-expanded="false" aria-haspopup="true">Người dùng<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Đăng ký</a> </li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Giỏ hàng (0)</a>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm">
-                    </div>
-                    <button type="submit" class="btn btn-default">Tìm</button>
-                </form>
-            </div>
-
-            <!-- /.container-->
-        </nav>
-
-
+    <nav class="navbar navbar-inverse">
+        <!--navbar-fixed-top-->
         <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div id="carousel1" class="carousel slide">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel1" data-slide-to="0" class="active"> </li>
-                            <li data-target="#carousel1" data-slide-to="1" class="active1"> </li>
-                            <li data-target="#carousel1" data-slide-to="2" class="active2"> </li>
-                            <li data-target="#carousel1" data-slide-to="3" class="active3"> </li>
-                            <li data-target="#carousel1" data-slide-to="4" class="active4"> </li>
-                            <li data-target="#carousel1" data-slide-to="5" class="active5"> </li>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-
+                        target="#navbar1" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">SÁCH ONLINE</a>
+                <a class="navbar-brand" href="#">TRANG CHỦ</a>
+                <a class="navbar-brand" href="#">GIỚI THIỆU</a>
+                <a class="navbar-brand" href="#">LIÊN HỆ</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-expanded="false" aria-haspopup="true">Người dùng<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Đăng ký</a> </li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Giỏ hàng (0)</a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm">
+                </div>
+                <button type="submit" class="btn btn-default">Tìm</button>
+            </form>
+        </div>
 
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img class="img-responsive" src="Images/Slider/01.jpg" alt="thumb">
-                                <div class="carousel-caption"> Quảng cáo 1 </div>
-                            </div>
-                            <div class="item active2">
-                                <img class="img-responsive" src="Images/Slider/02.jpg" alt="thumb">
-                                <div class="carousel-caption"> Quảng cáo 2 </div>
-                            </div>
-                            <div class="item active2">
-                                <img class="img-responsive" src="Images/Slider/03.jpg" alt="thumb">
-                                <div class="carousel-caption"> Quảng cáo 3 </div>
-                            </div>
-                            <div class="item active3">
-                                <img class="img-responsive" src="Images/Slider/04.jpg" alt="thumb">
-                                <div class="carousel-caption"> Quảng cáo 4 </div>
-                            </div>
-                            <div class="item active4">
-                                <img class="img-responsive" src="Images/Slider/05.jpg" alt="thumb">
-                                <div class="carousel-caption"> Quảng cáo 5 </div>
-                            </div>
-                            <div class="item active5">
-                                <img class="img-responsive" src="Images/Slider/06.jpg" alt="thumb">
-                                <div class="carousel-caption"> Quảng cáo 6 </div>
-                            </div>
+        <!-- /.container-->
+    </nav>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div id="carousel1" class="carousel slide">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel1" data-slide-to="0" class="active"> </li>
+                        <li data-target="#carousel1" data-slide-to="1" class="active1"> </li>
+                        <li data-target="#carousel1" data-slide-to="2" class="active2"> </li>
+                        <li data-target="#carousel1" data-slide-to="3" class="active3"> </li>
+                        <li data-target="#carousel1" data-slide-to="4" class="active4"> </li>
+                        <li data-target="#carousel1" data-slide-to="5" class="active5"> </li>
+
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img class="img-responsive" src="~/Images/Slider/01.jpg" alt="thumb">
+                            <div class="carousel-caption"> Quảng cáo 1 </div>
                         </div>
-                        <a class="left carousel-control" href="#carousel1" data-slide="prev">
-                            <span class="icon-
-prev"></span>
-                        </a> <a class="right carousel-control" href="#carousel1" data-slide="next">
-                            <span class="icon-next"></span>
-                        </a>
+                        <div class="item active2">
+                            <img class="img-responsive" src="~/Images/Slider/02.jpg" alt="thumb">
+                            <div class="carousel-caption"> Quảng cáo 2 </div>
+                        </div>
+                        <div class="item active2">
+                            <img class="img-responsive" src="~/Images/Slider/03.jpg" alt="thumb">
+                            <div class="carousel-caption"> Quảng cáo 3 </div>
+                        </div>
+                        <div class="item active3">
+                            <img class="img-responsive" src="~/Images/Slider/04.jpg" alt="thumb">
+                            <div class="carousel-caption"> Quảng cáo 4 </div>
+                        </div>
+                        <div class="item active4">
+                            <img class="img-responsive" src="~/Images/Slider/05.jpg" alt="thumb">
+                            <div class="carousel-caption"> Quảng cáo 5 </div>
+                        </div>
+                        <div class="item active5">
+                            <img class="img-responsive" src="~/Images/Slider/06.jpg" alt="thumb">
+                            <div class="carousel-caption"> Quảng cáo 6 </div>
+                        </div>
                     </div>
+                    <a class="left carousel-control" href="#carousel1" data-slide="prev">
+                        <span class="icon-
+prev"></span>
+                    </a> <a class="right carousel-control" href="#carousel1" data-slide="next">
+                        <span class="icon-next"></span>
+                    </a>
                 </div>
             </div>
         </div>
-
-
+    </div>
+    </head>
+    <body>
 
         <div class="container">
             <div class="row">
@@ -149,8 +134,8 @@ prev"></span>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                     @RenderBody()
                 </div>
-                <hr>
-            </div>
+                    <hr>
+                </div>
             <div class="container">
                 <h2 class="text-center">SÁCH BÁN NHIỀU</h2>
                 <div class="row">
@@ -160,7 +145,7 @@ prev"></span>
                                 <div class="media-left">
                                     <a href="#">
                                         <img class="media-object imgsachbannhieu"
-                                             src="Images/TH002.jpg" alt="placeholder image" width="150px" height="200x">
+                                             src="~/Images/TH002.jpg" alt="placeholder image" width="150px" height="200x">
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -174,7 +159,7 @@ prev"></span>
                                 <div class="media-left">
                                     <a href="#">
                                         <img class="media-object imgsachbannhieu"
-                                             src="Images/TH004.jpg" alt="placeholder image" width="150px" height="200x">
+                                             src="~/Images/TH004.jpg" alt="placeholder image" width="150px" height="200x">
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -188,7 +173,7 @@ prev"></span>
                                 <div class="media-left">
                                     <a href="#">
                                         <img class="media-object imgsachbannhieu"
-                                             src="Images/TH003.jpg" alt="placeholder image" width="150px" height="200x">
+                                             src="~/Images/TH003.jpg" alt="placeholder image" width="150px" height="200x">
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -206,7 +191,7 @@ prev"></span>
                                 <div class="media-left">
                                     <a href="#">
                                         <img class="media-object imgsachbannhieu"
-                                             src="Images/TH001.jpg" alt="placeholder image" width="150px" height="200x">
+                                             src="~/Images/TH001.jpg" alt="placeholder image" width="150px" height="200x">
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -220,7 +205,7 @@ prev"></span>
                                 <div class="media-left">
                                     <a href="#">
                                         <img class="media-object imgsachbannhieu"
-                                             src="Images/TH007.jpg" alt="placeholder image" width="150px" height="200x">
+                                             src="~/Images/TH007.jpg" alt="placeholder image" width="150px" height="200x">
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -234,7 +219,7 @@ prev"></span>
                                 <div class="media-left">
                                     <a href="#">
                                         <img class="media-object imgsachbannhieu"
-                                             src="Images/TH005.jpg" alt="placeholder image" width="150px" height="200x">
+                                             src="~/Images/TH005.jpg" alt="placeholder image" width="150px" height="200x">
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -251,28 +236,16 @@ prev"></span>
                 <hr>
             </div>
             <!-- /.container-->
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-                <div class="container">
-                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            
+            <div class="container body-content">
+                <hr />
+                <footer class="container well">
+                    <center>
+                        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                        <p>Website được phát triển để sử dụng làm bài tập thực hành môn Lập trình Web</p>
+                        <p>Email: abc@gmail.com</p>
+                    </center>
+                </footer>
+            </div>
+    </body>
 
-            @Scripts.Render("~/bundles/jquery")
-            @Scripts.Render("~/bundles/bootstrap")
-            @RenderSection("scripts", required: false)
-
-    
-</body>
 </html>
