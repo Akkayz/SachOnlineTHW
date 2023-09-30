@@ -1,17 +1,22 @@
-﻿using System;
+﻿using SachOnline.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using SachOnline.Models;
+using System.Configuration;
 namespace SachOnline.Controllers
 {
+
     public class SachOnlineController : Controller
     {
+        string connectionStringName = "SachOnlineConnectionString";
         // GET: SachOnline
         public ActionResult Index()
         {
-            return View();
+            var listSachMoi = LaySachMoi(6);
+            return View(listSachMoi);
         }
         public ActionResult ChuDePartial()
         {
@@ -37,6 +42,19 @@ namespace SachOnline.Controllers
         {
             return PartialView();
         }
-    }
+        dbSachOnlineDataContext data = new dbSachOnlineDataContext(ConfigurationManager.ConnectionStrings["SachOnlineConnectionString"].ConnectionString);
 
+        /// <summary>
+        /// LaySachMoi
+        /// </summary>
+        /// <param name="count">int</param>
+        // <returns>List</returns>
+        private List<SACH> LaySachMoi(int count)
+        {
+            return data.SACHes.OrderByDescending(a =>
+            a.NgayCapNhat).Take(count).ToList();
+        }
+        // GET: SachOnline
+        
+    }
 }
