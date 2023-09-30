@@ -13,5 +13,30 @@ namespace SachOnline.Controllers
         {
             return View();
         }
+        public ActionResult ChuDePartial()
+        {
+            return PartialView();
+        }
+        public ActionResult SachBanNhieuPartial()
+        {
+            return PartialView();
+        }
+        public ActionResult NhaXuatBanPartial()
+        {
+            return PartialView();
+        }
+        public ActionResult NavPartial()
+        {
+            return PartialView();
+        }
+        public ActionResult SliderPartial()
+        {
+            return PartialView();
+        }
+        public ActionResult FooterPartial()
+        {
+            return PartialView();
+        }
     }
+
 }

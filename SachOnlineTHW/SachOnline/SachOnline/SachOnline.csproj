@@ -222,11 +222,17 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\SachOnline\Index.cshtml" />
+    <Content Include="Views\SachOnline\ChuDePartial.cshtml" />
+    <Content Include="Views\SachOnline\SachBanNhieuPartial.cshtml" />
+    <Content Include="Views\SachOnline\NhaXuatBanPartial.cshtml" />
+    <Content Include="Views\SachOnline\NavPartial.cshtml" />
+    <Content Include="Views\SachOnline\SliderPartial.cshtml" />
+    <Content Include="Views\SachOnline\FooterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

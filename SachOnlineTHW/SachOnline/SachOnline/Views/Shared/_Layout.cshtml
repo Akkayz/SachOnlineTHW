@@ -3,12 +3,8 @@
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- jQuery library -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
  
 </head>
@@ -103,8 +99,8 @@ prev"></span>
             </div>
         </div>
     </div>
-
-
+</head>
+<body>
 
     <div class="container">
         <div class="row">
@@ -348,34 +344,18 @@ shopping-cart" aria-hidden="true"></span> Add to Cart
             <hr>
         </div>
         <!-- /.container-->
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-            <div class="container">
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
         <div class="container body-content">
             @RenderBody()
             <hr />
-            <footer>
-                <footer class="container well">
-                </footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <footer class="container well">
+                <center>
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                    <p>Website được phát triển để sử dụng làm bài tập thực hành môn Lập trình Web</p>
+                    <p>Email: abc@gmail.com</p>
+                </center>
             </footer>
         </div>
+        @RenderSection("SachBanNhieu", required: false)
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
 </body>
 </html>
