@@ -11,7 +11,6 @@ namespace SachOnline.Controllers
 
     public class SachOnlineController : Controller
     {
-        string connectionStringName = "SachOnlineConnectionString";
         // GET: SachOnline
         public ActionResult Index()
         {
@@ -42,7 +41,7 @@ namespace SachOnline.Controllers
         {
             return PartialView();
         }
-        dbSachOnlineDataContext data = new dbSachOnlineDataContext(ConfigurationManager.ConnectionStrings["SachOnlineConnectionString"].ConnectionString);
+        dbSachOnlineDataContext data = new dbSachOnlineDataContext("Data Source=WIN-19S1OU3P8T7;Initial Catalog=SachOnline;Integrated Security=True");
 
         /// <summary>
         /// LaySachMoi
