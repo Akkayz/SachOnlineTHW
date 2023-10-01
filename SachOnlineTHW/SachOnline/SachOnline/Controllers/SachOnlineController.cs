@@ -19,7 +19,8 @@ namespace SachOnline.Controllers
         }
         public ActionResult ChuDePartial()
         {
-            return PartialView();
+            var listChuDe = from cd in data.CHUDEs select cd;
+            return PartialView(listChuDe);
         }
         public ActionResult SachBanNhieuPartial()
         {
@@ -27,7 +28,8 @@ namespace SachOnline.Controllers
         }
         public ActionResult NhaXuatBanPartial()
         {
-            return PartialView();
+            var listNhaXuatBan = from xb in data.NHAXUATBANs select xb;
+            return PartialView(listNhaXuatBan);
         }
         public ActionResult NavPartial()
         {
@@ -41,7 +43,7 @@ namespace SachOnline.Controllers
         {
             return PartialView();
         }
-        dbSachOnlineDataContext data = new dbSachOnlineDataContext("Data Source=WIN-19S1OU3P8T7;Initial Catalog=SachOnline;Integrated Security=True");
+        dbSachOnlineDataContext data = new dbSachOnlineDataContext("Data Source=WIN-5GV9GD73UG8;Initial Catalog=SachOnline;Integrated Security=True");
 
         /// <summary>
         /// LaySachMoi
@@ -53,6 +55,7 @@ namespace SachOnline.Controllers
             return data.SACHes.OrderByDescending(a =>
             a.NgayCapNhat).Take(count).ToList();
         }
+
         // GET: SachOnline
         
     }
