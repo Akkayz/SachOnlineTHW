@@ -24,7 +24,8 @@ namespace SachOnline.Controllers
         }
         public ActionResult SachBanNhieuPartial()
         {
-            return PartialView();
+            var listSachBanNhieu= LaySachBanNhieu(6);
+            return View(listSachBanNhieu);
         }
         public ActionResult NhaXuatBanPartial()
         {
@@ -44,19 +45,19 @@ namespace SachOnline.Controllers
             return PartialView();
         }
         dbSachOnlineDataContext data = new dbSachOnlineDataContext("Data Source=WIN-5GV9GD73UG8;Initial Catalog=SachOnline;Integrated Security=True");
-
-        /// <summary>
-        /// LaySachMoi
-        /// </summary>
-        /// <param name="count">int</param>
-        // <returns>List</returns>
+        //Lấy sách mới nhất
         private List<SACH> LaySachMoi(int count)
         {
             return data.SACHes.OrderByDescending(a =>
             a.NgayCapNhat).Take(count).ToList();
         }
 
-        // GET: SachOnline
-        
+        //Lấy sách bán  nhiều nhất
+        private List<SACH> LaySachBanNhieu(int count)
+        {
+            return data.SACHes.OrderByDescending(a =>
+            a.SoLuongBan).Take(count).ToList();
+        }
+
     }
 }
