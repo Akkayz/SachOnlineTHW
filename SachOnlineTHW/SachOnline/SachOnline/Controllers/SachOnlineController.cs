@@ -54,6 +54,13 @@ namespace SachOnline.Controllers
             var sach = from s in data.SACHes where s.MaCD == id select s;
             return View(sach);
         }
+        public ActionResult ChiTietSach(int id)
+        {
+            var sach = from s in data.SACHes
+                       where s.MaSach == id
+                       select s;
+            return View(sach.Single());
+        }
         dbSachOnlineDataContext data = new dbSachOnlineDataContext("Data Source=AKKAY;Initial Catalog=SachOnline;Integrated Security=True");
         //Lấy sách mới nhất
         private List<SACH> LaySachMoi(int count)
