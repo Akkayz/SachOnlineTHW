@@ -44,7 +44,17 @@ namespace SachOnline.Controllers
         {
             return PartialView();
         }
-        dbSachOnlineDataContext data = new dbSachOnlineDataContext("Data Source=WIN-5GV9GD73UG8;Initial Catalog=SachOnline;Integrated Security=True");
+        public ActionResult SachTheoNhaXuatBan(int id)
+        {
+            var sach = from s in data.SACHes where s.MaNXB == id select s;
+            return View(sach);
+        }
+        public ActionResult SachTheoChuDe(int id)
+        {
+            var sach = from s in data.SACHes where s.MaCD == id select s;
+            return View(sach);
+        }
+        dbSachOnlineDataContext data = new dbSachOnlineDataContext("Data Source=AKKAY;Initial Catalog=SachOnline;Integrated Security=True");
         //Lấy sách mới nhất
         private List<SACH> LaySachMoi(int count)
         {
