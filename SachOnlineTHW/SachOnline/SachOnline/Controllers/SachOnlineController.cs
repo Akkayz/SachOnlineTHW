@@ -24,8 +24,8 @@ namespace SachOnline.Controllers
         }
         public ActionResult SachBanNhieuPartial()
         {
-            var listSachBanNhieu= LaySachBanNhieu(6);
-            return View(listSachBanNhieu);
+            var listSachBanNhieu = LaySachBanNhieu(6);
+            return PartialView(listSachBanNhieu);
         }
         public ActionResult NhaXuatBanPartial()
         {

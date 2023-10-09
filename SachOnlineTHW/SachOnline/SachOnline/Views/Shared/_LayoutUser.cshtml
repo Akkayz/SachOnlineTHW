@@ -9,14 +9,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>@ViewBag.Title</title>
 </head>
-@model IEnumerable<SachOnline.Models.SACH>
-<style>
-    .text-truncate {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-</style>
 <body>
     <nav class="navbar navbar-inverse">
         <!--navbar-fixed-top-->
@@ -126,29 +118,9 @@ prev"></span>
                 </div>
                 <hr>
             </div>
-            <h2 class="text-center">SÁCH BÁN NHIỀU</h2>
-            <div class="row">
-                @foreach (var sach in Model)
-                {
-                    <div class="col-lg-6 col-md-6">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object imgsachbannhieu"
-                                         src="~/Images/@sach.AnhBia" alt="Bìa sách" width="150px" height="200px">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">@sach.TenSach</h4>
-                                <p class="text-truncate" style="white-space: pre-line">@sach.MoTa</p>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
+            @Html.Action("SachBanNhieuPartial", "SachOnline")
         </div>
         </div>
-
         <!-- /.container-->
         <div class="container body-content">
             <hr />
