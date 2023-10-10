@@ -16,6 +16,13 @@ namespace SachOnline.Controllers
         {
             return View();
         }
+        public ActionResult GioHangPartial()
+        {
+            ViewBag.TongSoLuong = TongSoLuong();
+            ViewBag.TongTien = TongTien();
+            return PartialView();
+
+        }
         public List<GioHang> LayGioHang()
         {
             List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;

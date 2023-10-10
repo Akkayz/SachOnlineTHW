@@ -10,3 +10,15 @@
     <a class="navbar-brand" href="#">GIỚI THIỆU</a>
     <a class="navbar-brand" href="#">LIÊN HỆ</a>
 </div>
+<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+           aria-expanded="false" aria-haspopup="true">Người dùng<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Đăng ký</a> </li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+        </ul>
+    </li>
+    @Html.Action("GioHangPartial", "GioHang")
+</ul>
