@@ -33,7 +33,7 @@ namespace SachOnline.Controllers
             var sDiaChi = collection["DiaChi"];
             var sEmail = collection["Email"];
             var sDienThoai = collection["DienThoai"];
-            var dNgaySinh = collection["NgaySinh"]; // Không cần định dạng ngày
+            var dNgaySinh = String.Format("{0:MM/dd/yyyy}",collection["NgaySinh"]); // Không cần định dạng ngày
 
             if (String.IsNullOrEmpty(sHoTen))
             {
