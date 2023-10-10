@@ -9,14 +9,14 @@
       <Column Name="Quyen" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TACGIA" Member="TACGIAs">
-    <Type Name="TACGIA">
-      <Column Name="MaTG" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="TieuSu" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="DienThoai" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Association Name="TACGIA_VIETSACH" Member="VIETSACHes" ThisKey="MaTG" OtherKey="MaTG" Type="VIETSACH" />
+  <Table Name="dbo.VIETSACH" Member="VIETSACHes">
+    <Type Name="VIETSACH">
+      <Column Name="MaTG" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaSach" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VaiTro" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ViTri" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Association Name="SACH_VIETSACH" Member="SACH" ThisKey="MaSach" OtherKey="MaSach" Type="SACH" IsForeignKey="true" />
+      <Association Name="TACGIA_VIETSACH" Member="TACGIA" ThisKey="MaTG" OtherKey="MaTG" Type="TACGIA" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CHITIETDATHANG" Member="CHITIETDATHANGs">
@@ -81,20 +81,20 @@
       <Column Name="GiaBan" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="MaCD" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaNXB" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="SACH_CHITIETDATHANG" Member="CHITIETDATHANGs" ThisKey="MaSach" OtherKey="MaSach" Type="CHITIETDATHANG" />
       <Association Name="SACH_VIETSACH" Member="VIETSACHes" ThisKey="MaSach" OtherKey="MaSach" Type="VIETSACH" />
+      <Association Name="SACH_CHITIETDATHANG" Member="CHITIETDATHANGs" ThisKey="MaSach" OtherKey="MaSach" Type="CHITIETDATHANG" />
       <Association Name="CHUDE_SACH" Member="CHUDE" ThisKey="MaCD" OtherKey="MaCD" Type="CHUDE" IsForeignKey="true" />
       <Association Name="NHAXUATBAN_SACH" Member="NHAXUATBAN" ThisKey="MaNXB" OtherKey="MaNXB" Type="NHAXUATBAN" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.VIETSACH" Member="VIETSACHes">
-    <Type Name="VIETSACH">
-      <Column Name="MaTG" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaSach" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="VaiTro" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="ViTri" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Association Name="SACH_VIETSACH" Member="SACH" ThisKey="MaSach" OtherKey="MaSach" Type="SACH" IsForeignKey="true" />
-      <Association Name="TACGIA_VIETSACH" Member="TACGIA" ThisKey="MaTG" OtherKey="MaTG" Type="TACGIA" IsForeignKey="true" />
+  <Table Name="dbo.TACGIA" Member="TACGIAs">
+    <Type Name="TACGIA">
+      <Column Name="MaTG" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TieuSu" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DienThoai" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Association Name="TACGIA_VIETSACH" Member="VIETSACHes" ThisKey="MaTG" OtherKey="MaTG" Type="VIETSACH" />
     </Type>
   </Table>
 </Database>

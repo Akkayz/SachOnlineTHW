@@ -33,9 +33,9 @@ namespace SachOnline.Models
     partial void InsertADMIN(ADMIN instance);
     partial void UpdateADMIN(ADMIN instance);
     partial void DeleteADMIN(ADMIN instance);
-    partial void InsertTACGIA(TACGIA instance);
-    partial void UpdateTACGIA(TACGIA instance);
-    partial void DeleteTACGIA(TACGIA instance);
+    partial void InsertVIETSACH(VIETSACH instance);
+    partial void UpdateVIETSACH(VIETSACH instance);
+    partial void DeleteVIETSACH(VIETSACH instance);
     partial void InsertCHITIETDATHANG(CHITIETDATHANG instance);
     partial void UpdateCHITIETDATHANG(CHITIETDATHANG instance);
     partial void DeleteCHITIETDATHANG(CHITIETDATHANG instance);
@@ -54,9 +54,9 @@ namespace SachOnline.Models
     partial void InsertSACH(SACH instance);
     partial void UpdateSACH(SACH instance);
     partial void DeleteSACH(SACH instance);
-    partial void InsertVIETSACH(VIETSACH instance);
-    partial void UpdateVIETSACH(VIETSACH instance);
-    partial void DeleteVIETSACH(VIETSACH instance);
+    partial void InsertTACGIA(TACGIA instance);
+    partial void UpdateTACGIA(TACGIA instance);
+    partial void DeleteTACGIA(TACGIA instance);
     #endregion
 		
 		public dbSachOnlineDataContext(string connection) : 
@@ -82,8 +82,8 @@ namespace SachOnline.Models
 		{
 			OnCreated();
 		}
-
-        public System.Data.Linq.Table<ADMIN> ADMINs
+		
+		public System.Data.Linq.Table<ADMIN> ADMINs
 		{
 			get
 			{
@@ -91,11 +91,11 @@ namespace SachOnline.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<TACGIA> TACGIAs
+		public System.Data.Linq.Table<VIETSACH> VIETSACHes
 		{
 			get
 			{
-				return this.GetTable<TACGIA>();
+				return this.GetTable<VIETSACH>();
 			}
 		}
 		
@@ -147,11 +147,11 @@ namespace SachOnline.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<VIETSACH> VIETSACHes
+		public System.Data.Linq.Table<TACGIA> TACGIAs
 		{
 			get
 			{
-				return this.GetTable<VIETSACH>();
+				return this.GetTable<TACGIA>();
 			}
 		}
 	}
@@ -338,23 +338,23 @@ namespace SachOnline.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TACGIA")]
-	public partial class TACGIA : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VIETSACH")]
+	public partial class VIETSACH : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _MaTG;
 		
-		private string _TenTG;
+		private int _MaSach;
 		
-		private string _DiaChi;
+		private string _VaiTro;
 		
-		private string _TieuSu;
+		private string _ViTri;
 		
-		private string _DienThoai;
+		private EntityRef<SACH> _SACH;
 		
-		private EntitySet<VIETSACH> _VIETSACHes;
+		private EntityRef<TACGIA> _TACGIA;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -362,23 +362,22 @@ namespace SachOnline.Models
     partial void OnCreated();
     partial void OnMaTGChanging(int value);
     partial void OnMaTGChanged();
-    partial void OnTenTGChanging(string value);
-    partial void OnTenTGChanged();
-    partial void OnDiaChiChanging(string value);
-    partial void OnDiaChiChanged();
-    partial void OnTieuSuChanging(string value);
-    partial void OnTieuSuChanged();
-    partial void OnDienThoaiChanging(string value);
-    partial void OnDienThoaiChanged();
+    partial void OnMaSachChanging(int value);
+    partial void OnMaSachChanged();
+    partial void OnVaiTroChanging(string value);
+    partial void OnVaiTroChanged();
+    partial void OnViTriChanging(string value);
+    partial void OnViTriChanged();
     #endregion
 		
-		public TACGIA()
+		public VIETSACH()
 		{
-			this._VIETSACHes = new EntitySet<VIETSACH>(new Action<VIETSACH>(this.attach_VIETSACHes), new Action<VIETSACH>(this.detach_VIETSACHes));
+			this._SACH = default(EntityRef<SACH>);
+			this._TACGIA = default(EntityRef<TACGIA>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaTG", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaTG", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int MaTG
 		{
 			get
@@ -389,6 +388,10 @@ namespace SachOnline.Models
 			{
 				if ((this._MaTG != value))
 				{
+					if (this._TACGIA.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnMaTGChanging(value);
 					this.SendPropertyChanging();
 					this._MaTG = value;
@@ -398,96 +401,135 @@ namespace SachOnline.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenTG", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string TenTG
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSach", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MaSach
 		{
 			get
 			{
-				return this._TenTG;
+				return this._MaSach;
 			}
 			set
 			{
-				if ((this._TenTG != value))
+				if ((this._MaSach != value))
 				{
-					this.OnTenTGChanging(value);
+					if (this._SACH.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaSachChanging(value);
 					this.SendPropertyChanging();
-					this._TenTG = value;
-					this.SendPropertyChanged("TenTG");
-					this.OnTenTGChanged();
+					this._MaSach = value;
+					this.SendPropertyChanged("MaSach");
+					this.OnMaSachChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaChi", DbType="NVarChar(100)")]
-		public string DiaChi
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VaiTro", DbType="NVarChar(30)")]
+		public string VaiTro
 		{
 			get
 			{
-				return this._DiaChi;
+				return this._VaiTro;
 			}
 			set
 			{
-				if ((this._DiaChi != value))
+				if ((this._VaiTro != value))
 				{
-					this.OnDiaChiChanging(value);
+					this.OnVaiTroChanging(value);
 					this.SendPropertyChanging();
-					this._DiaChi = value;
-					this.SendPropertyChanged("DiaChi");
-					this.OnDiaChiChanged();
+					this._VaiTro = value;
+					this.SendPropertyChanged("VaiTro");
+					this.OnVaiTroChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TieuSu", DbType="NText", UpdateCheck=UpdateCheck.Never)]
-		public string TieuSu
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViTri", DbType="NVarChar(30)")]
+		public string ViTri
 		{
 			get
 			{
-				return this._TieuSu;
+				return this._ViTri;
 			}
 			set
 			{
-				if ((this._TieuSu != value))
+				if ((this._ViTri != value))
 				{
-					this.OnTieuSuChanging(value);
+					this.OnViTriChanging(value);
 					this.SendPropertyChanging();
-					this._TieuSu = value;
-					this.SendPropertyChanged("TieuSu");
-					this.OnTieuSuChanged();
+					this._ViTri = value;
+					this.SendPropertyChanged("ViTri");
+					this.OnViTriChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DienThoai", DbType="VarChar(15)")]
-		public string DienThoai
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SACH_VIETSACH", Storage="_SACH", ThisKey="MaSach", OtherKey="MaSach", IsForeignKey=true)]
+		public SACH SACH
 		{
 			get
 			{
-				return this._DienThoai;
+				return this._SACH.Entity;
 			}
 			set
 			{
-				if ((this._DienThoai != value))
+				SACH previousValue = this._SACH.Entity;
+				if (((previousValue != value) 
+							|| (this._SACH.HasLoadedOrAssignedValue == false)))
 				{
-					this.OnDienThoaiChanging(value);
 					this.SendPropertyChanging();
-					this._DienThoai = value;
-					this.SendPropertyChanged("DienThoai");
-					this.OnDienThoaiChanged();
+					if ((previousValue != null))
+					{
+						this._SACH.Entity = null;
+						previousValue.VIETSACHes.Remove(this);
+					}
+					this._SACH.Entity = value;
+					if ((value != null))
+					{
+						value.VIETSACHes.Add(this);
+						this._MaSach = value.MaSach;
+					}
+					else
+					{
+						this._MaSach = default(int);
+					}
+					this.SendPropertyChanged("SACH");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACGIA_VIETSACH", Storage="_VIETSACHes", ThisKey="MaTG", OtherKey="MaTG")]
-		public EntitySet<VIETSACH> VIETSACHes
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACGIA_VIETSACH", Storage="_TACGIA", ThisKey="MaTG", OtherKey="MaTG", IsForeignKey=true)]
+		public TACGIA TACGIA
 		{
 			get
 			{
-				return this._VIETSACHes;
+				return this._TACGIA.Entity;
 			}
 			set
 			{
-				this._VIETSACHes.Assign(value);
+				TACGIA previousValue = this._TACGIA.Entity;
+				if (((previousValue != value) 
+							|| (this._TACGIA.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TACGIA.Entity = null;
+						previousValue.VIETSACHes.Remove(this);
+					}
+					this._TACGIA.Entity = value;
+					if ((value != null))
+					{
+						value.VIETSACHes.Add(this);
+						this._MaTG = value.MaTG;
+					}
+					else
+					{
+						this._MaTG = default(int);
+					}
+					this.SendPropertyChanged("TACGIA");
+				}
 			}
 		}
 		
@@ -509,18 +551,6 @@ namespace SachOnline.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_VIETSACHes(VIETSACH entity)
-		{
-			this.SendPropertyChanging();
-			entity.TACGIA = this;
-		}
-		
-		private void detach_VIETSACHes(VIETSACH entity)
-		{
-			this.SendPropertyChanging();
-			entity.TACGIA = null;
 		}
 	}
 	
@@ -1549,9 +1579,9 @@ namespace SachOnline.Models
 		
 		private System.Nullable<int> _MaNXB;
 		
-		private EntitySet<CHITIETDATHANG> _CHITIETDATHANGs;
-		
 		private EntitySet<VIETSACH> _VIETSACHes;
+		
+		private EntitySet<CHITIETDATHANG> _CHITIETDATHANGs;
 		
 		private EntityRef<CHUDE> _CHUDE;
 		
@@ -1583,8 +1613,8 @@ namespace SachOnline.Models
 		
 		public SACH()
 		{
-			this._CHITIETDATHANGs = new EntitySet<CHITIETDATHANG>(new Action<CHITIETDATHANG>(this.attach_CHITIETDATHANGs), new Action<CHITIETDATHANG>(this.detach_CHITIETDATHANGs));
 			this._VIETSACHes = new EntitySet<VIETSACH>(new Action<VIETSACH>(this.attach_VIETSACHes), new Action<VIETSACH>(this.detach_VIETSACHes));
+			this._CHITIETDATHANGs = new EntitySet<CHITIETDATHANG>(new Action<CHITIETDATHANG>(this.attach_CHITIETDATHANGs), new Action<CHITIETDATHANG>(this.detach_CHITIETDATHANGs));
 			this._CHUDE = default(EntityRef<CHUDE>);
 			this._NHAXUATBAN = default(EntityRef<NHAXUATBAN>);
 			OnCreated();
@@ -1778,19 +1808,6 @@ namespace SachOnline.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SACH_CHITIETDATHANG", Storage="_CHITIETDATHANGs", ThisKey="MaSach", OtherKey="MaSach")]
-		public EntitySet<CHITIETDATHANG> CHITIETDATHANGs
-		{
-			get
-			{
-				return this._CHITIETDATHANGs;
-			}
-			set
-			{
-				this._CHITIETDATHANGs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SACH_VIETSACH", Storage="_VIETSACHes", ThisKey="MaSach", OtherKey="MaSach")]
 		public EntitySet<VIETSACH> VIETSACHes
 		{
@@ -1801,6 +1818,19 @@ namespace SachOnline.Models
 			set
 			{
 				this._VIETSACHes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SACH_CHITIETDATHANG", Storage="_CHITIETDATHANGs", ThisKey="MaSach", OtherKey="MaSach")]
+		public EntitySet<CHITIETDATHANG> CHITIETDATHANGs
+		{
+			get
+			{
+				return this._CHITIETDATHANGs;
+			}
+			set
+			{
+				this._CHITIETDATHANGs.Assign(value);
 			}
 		}
 		
@@ -1892,18 +1922,6 @@ namespace SachOnline.Models
 			}
 		}
 		
-		private void attach_CHITIETDATHANGs(CHITIETDATHANG entity)
-		{
-			this.SendPropertyChanging();
-			entity.SACH = this;
-		}
-		
-		private void detach_CHITIETDATHANGs(CHITIETDATHANG entity)
-		{
-			this.SendPropertyChanging();
-			entity.SACH = null;
-		}
-		
 		private void attach_VIETSACHes(VIETSACH entity)
 		{
 			this.SendPropertyChanging();
@@ -1915,25 +1933,37 @@ namespace SachOnline.Models
 			this.SendPropertyChanging();
 			entity.SACH = null;
 		}
+		
+		private void attach_CHITIETDATHANGs(CHITIETDATHANG entity)
+		{
+			this.SendPropertyChanging();
+			entity.SACH = this;
+		}
+		
+		private void detach_CHITIETDATHANGs(CHITIETDATHANG entity)
+		{
+			this.SendPropertyChanging();
+			entity.SACH = null;
+		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VIETSACH")]
-	public partial class VIETSACH : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TACGIA")]
+	public partial class TACGIA : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _MaTG;
 		
-		private int _MaSach;
+		private string _TenTG;
 		
-		private string _VaiTro;
+		private string _DiaChi;
 		
-		private string _ViTri;
+		private string _TieuSu;
 		
-		private EntityRef<SACH> _SACH;
+		private string _DienThoai;
 		
-		private EntityRef<TACGIA> _TACGIA;
+		private EntitySet<VIETSACH> _VIETSACHes;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1941,22 +1971,23 @@ namespace SachOnline.Models
     partial void OnCreated();
     partial void OnMaTGChanging(int value);
     partial void OnMaTGChanged();
-    partial void OnMaSachChanging(int value);
-    partial void OnMaSachChanged();
-    partial void OnVaiTroChanging(string value);
-    partial void OnVaiTroChanged();
-    partial void OnViTriChanging(string value);
-    partial void OnViTriChanged();
+    partial void OnTenTGChanging(string value);
+    partial void OnTenTGChanged();
+    partial void OnDiaChiChanging(string value);
+    partial void OnDiaChiChanged();
+    partial void OnTieuSuChanging(string value);
+    partial void OnTieuSuChanged();
+    partial void OnDienThoaiChanging(string value);
+    partial void OnDienThoaiChanged();
     #endregion
 		
-		public VIETSACH()
+		public TACGIA()
 		{
-			this._SACH = default(EntityRef<SACH>);
-			this._TACGIA = default(EntityRef<TACGIA>);
+			this._VIETSACHes = new EntitySet<VIETSACH>(new Action<VIETSACH>(this.attach_VIETSACHes), new Action<VIETSACH>(this.detach_VIETSACHes));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaTG", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaTG", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int MaTG
 		{
 			get
@@ -1967,10 +1998,6 @@ namespace SachOnline.Models
 			{
 				if ((this._MaTG != value))
 				{
-					if (this._TACGIA.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnMaTGChanging(value);
 					this.SendPropertyChanging();
 					this._MaTG = value;
@@ -1980,135 +2007,96 @@ namespace SachOnline.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSach", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MaSach
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenTG", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string TenTG
 		{
 			get
 			{
-				return this._MaSach;
+				return this._TenTG;
 			}
 			set
 			{
-				if ((this._MaSach != value))
+				if ((this._TenTG != value))
 				{
-					if (this._SACH.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaSachChanging(value);
+					this.OnTenTGChanging(value);
 					this.SendPropertyChanging();
-					this._MaSach = value;
-					this.SendPropertyChanged("MaSach");
-					this.OnMaSachChanged();
+					this._TenTG = value;
+					this.SendPropertyChanged("TenTG");
+					this.OnTenTGChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VaiTro", DbType="NVarChar(30)")]
-		public string VaiTro
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaChi", DbType="NVarChar(100)")]
+		public string DiaChi
 		{
 			get
 			{
-				return this._VaiTro;
+				return this._DiaChi;
 			}
 			set
 			{
-				if ((this._VaiTro != value))
+				if ((this._DiaChi != value))
 				{
-					this.OnVaiTroChanging(value);
+					this.OnDiaChiChanging(value);
 					this.SendPropertyChanging();
-					this._VaiTro = value;
-					this.SendPropertyChanged("VaiTro");
-					this.OnVaiTroChanged();
+					this._DiaChi = value;
+					this.SendPropertyChanged("DiaChi");
+					this.OnDiaChiChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ViTri", DbType="NVarChar(30)")]
-		public string ViTri
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TieuSu", DbType="NText", UpdateCheck=UpdateCheck.Never)]
+		public string TieuSu
 		{
 			get
 			{
-				return this._ViTri;
+				return this._TieuSu;
 			}
 			set
 			{
-				if ((this._ViTri != value))
+				if ((this._TieuSu != value))
 				{
-					this.OnViTriChanging(value);
+					this.OnTieuSuChanging(value);
 					this.SendPropertyChanging();
-					this._ViTri = value;
-					this.SendPropertyChanged("ViTri");
-					this.OnViTriChanged();
+					this._TieuSu = value;
+					this.SendPropertyChanged("TieuSu");
+					this.OnTieuSuChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SACH_VIETSACH", Storage="_SACH", ThisKey="MaSach", OtherKey="MaSach", IsForeignKey=true)]
-		public SACH SACH
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DienThoai", DbType="VarChar(15)")]
+		public string DienThoai
 		{
 			get
 			{
-				return this._SACH.Entity;
+				return this._DienThoai;
 			}
 			set
 			{
-				SACH previousValue = this._SACH.Entity;
-				if (((previousValue != value) 
-							|| (this._SACH.HasLoadedOrAssignedValue == false)))
+				if ((this._DienThoai != value))
 				{
+					this.OnDienThoaiChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SACH.Entity = null;
-						previousValue.VIETSACHes.Remove(this);
-					}
-					this._SACH.Entity = value;
-					if ((value != null))
-					{
-						value.VIETSACHes.Add(this);
-						this._MaSach = value.MaSach;
-					}
-					else
-					{
-						this._MaSach = default(int);
-					}
-					this.SendPropertyChanged("SACH");
+					this._DienThoai = value;
+					this.SendPropertyChanged("DienThoai");
+					this.OnDienThoaiChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACGIA_VIETSACH", Storage="_TACGIA", ThisKey="MaTG", OtherKey="MaTG", IsForeignKey=true)]
-		public TACGIA TACGIA
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACGIA_VIETSACH", Storage="_VIETSACHes", ThisKey="MaTG", OtherKey="MaTG")]
+		public EntitySet<VIETSACH> VIETSACHes
 		{
 			get
 			{
-				return this._TACGIA.Entity;
+				return this._VIETSACHes;
 			}
 			set
 			{
-				TACGIA previousValue = this._TACGIA.Entity;
-				if (((previousValue != value) 
-							|| (this._TACGIA.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TACGIA.Entity = null;
-						previousValue.VIETSACHes.Remove(this);
-					}
-					this._TACGIA.Entity = value;
-					if ((value != null))
-					{
-						value.VIETSACHes.Add(this);
-						this._MaTG = value.MaTG;
-					}
-					else
-					{
-						this._MaTG = default(int);
-					}
-					this.SendPropertyChanged("TACGIA");
-				}
+				this._VIETSACHes.Assign(value);
 			}
 		}
 		
@@ -2130,6 +2118,18 @@ namespace SachOnline.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_VIETSACHes(VIETSACH entity)
+		{
+			this.SendPropertyChanging();
+			entity.TACGIA = this;
+		}
+		
+		private void detach_VIETSACHes(VIETSACH entity)
+		{
+			this.SendPropertyChanging();
+			entity.TACGIA = null;
 		}
 	}
 }
