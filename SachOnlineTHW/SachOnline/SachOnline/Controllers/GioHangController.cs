@@ -23,6 +23,7 @@ namespace SachOnline.Controllers
             return PartialView();
 
         }
+
         public List<GioHang> LayGioHang()
         {
             List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
@@ -33,6 +34,7 @@ namespace SachOnline.Controllers
             }
             return lstGioHang;
         }
+
         public ActionResult ThemGioHang(int ms, string url)
         {
             List<GioHang> lstGioHang = LayGioHang();
@@ -48,6 +50,7 @@ namespace SachOnline.Controllers
             }
             return Redirect(url);
         }
+
         private int TongSoLuong()
         {
             int iTongSoLuong = 0;
@@ -104,6 +107,59 @@ namespace SachOnline.Controllers
             lstGioHang.Clear();
             return RedirectToAction("Index","SachOnline");
         }
+
+        [HttpGet]
+        public ActionResult DatHang()
+        {
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "User");
+            }
+            if (Session["GioHang"] == null )
+            {
+                return RedirectToAction("Index", "SachOnline");
+            }
+            List<GioHang> lstGioHang = LayGioHang();
+            ViewBag.TongSoLuong = TongSoLuong();
+            ViewBag.TongTien = TongTien();
+            return View(lstGioHang);
+        }
+
+        public ActionResult DatHang(FormCollection f)
+        {
+            DONDATHANG ddh = new DONDATHANG();
+            KHACHHANG kh = (KHACHHANG)Session["Taikhoan"];
+            List<GioHang> lstGioHang = LayGioHang();
+            ddh.MaKH = kh.MaKH;
+            ddh.NgayDat = DateTime.Now;
+            var NgayGiao = String.Format("{0:MM/dd/yyyy}", f["NgayGiao"]);
+            ddh.NgayGiao = DateTime.Parse(NgayGiao);
+            ddh.TinhTrangGiaoHang = 1;
+            ddh.DaThanhToan = false;
+            db.DONDATHANGs.InsertOnSubmit(ddh);
+            db.SubmitChanges();
+            //Thém chi tiét don hang
+            foreach (var item in lstGioHang)
+            {
+                CHITIETDATHANG ctdh = new CHITIETDATHANG();
+                ctdh.MaDonHang = ddh.MaDonHang;
+                ctdh.MaSach = item.iMaSach;
+                ctdh.SoLuong = item.iSoLuong;
+                ctdh.DonGia = (decimal)item.dDonGia;
+                db.CHITIETDATHANGs.InsertOnSubmit(ctdh);
+
+
+            }
+            db.SubmitChanges();
+            Session["GioHang"] = null;
+            return RedirectToAction("XacNhanDonHang", "GioHang");
+        }
+
+        public ActionResult XacNhanDonHang()
+        {
+            return View();
+        }
+
         public ActionResult GioHang()
         {
             List<GioHang> lstGioHang = LayGioHang();
