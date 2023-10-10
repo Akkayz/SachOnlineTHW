@@ -29,14 +29,13 @@
                 <a href="@Url.Action("ChiTietSach","SachOnline", new { id =item.iMaSach})">Chi tiết</a>
             </td>
             <td>
-                @Html.ActionLink("Xóa", "XoaGioHang", new
+                @Html.ActionLink("Xóa", "XoaSPKhoiGioHang", new
                 {
-                    @iMaSach =
-        item.iMaSach
+                    @iMaSach =item.iMaSach
                 })
-            </td>
-        </tr>
-    }
+        </td>
+    </tr>
+}
     <tr>
         <td colspan="4" style="text-align:right; color:red; font-weight:bold; padding- right:5px;">
             Tổng số lượng: @string.Format("{0:#,##0}", @ViewBag.TongSoLuong)

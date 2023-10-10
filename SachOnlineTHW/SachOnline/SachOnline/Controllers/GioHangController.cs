@@ -59,6 +59,7 @@ namespace SachOnline.Controllers
             }
             return iTongSoLuong;
         }
+
         private double TongTien()
         {
             double dTongTien = 0;
@@ -69,6 +70,23 @@ namespace SachOnline.Controllers
             }
             return dTongTien;
         }
+
+        public ActionResult XoaSPKhoiGioHang(int iMaSach)
+        {
+            List<GioHang> lstGioHang = LayGioHang();
+           
+            GioHang sp = lstGioHang.SingleOrDefault(n => n.iMaSach == iMaSach);
+           
+            if (sp != null)
+            {
+                lstGioHang.RemoveAll(n => n.iMaSach == iMaSach);
+                if (lstGioHang.Count == 0)
+                return RedirectToAction("Index", "SachOnline");
+                return RedirectToAction("GioHang");
+            }
+            return RedirectToAction("GioHang");
+        }
+         
         public ActionResult GioHang()
         {
             List<GioHang> lstGioHang = LayGioHang();
