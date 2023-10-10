@@ -6,11 +6,13 @@ using System.Web;
 using System.Web.Mvc;
 using SachOnline.Models;
 using System.Configuration;
+
 namespace SachOnline.Controllers
 {
 
     public class SachOnlineController : Controller
     {
+        private dbSachOnlineDataContext data = new dbSachOnlineDataContext(ConfigurationManager.ConnectionStrings["SachOnlineConnectionString"].ConnectionString);
         // GET: SachOnline
         public ActionResult Index()
         {
@@ -61,8 +63,6 @@ namespace SachOnline.Controllers
                        select s;
             return View(sach.Single());
         }
-
-        dbSachOnlineDataContext data= new dbSachOnlineDataContext("Data Source=MSI\\SQLEXPRESS;Initial Catalog=SachOnline;Integrated Security=True");
         //Lấy sách mới nhất
         private List<SACH> LaySachMoi(int count)
         {
@@ -78,5 +78,4 @@ namespace SachOnline.Controllers
         }
 
     }
-
 }

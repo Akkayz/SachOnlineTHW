@@ -1,16 +1,15 @@
 ﻿using SachOnline.Models;
 using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace SachOnline.Controllers
 {
     public class UserController : Controller
     {
-        dbSachOnlineDataContext data = new dbSachOnlineDataContext("Data Source=MSI\\SQLEXPRESS;Initial Catalog=SachOnline;Integrated Security=True");
+        private dbSachOnlineDataContext db = new dbSachOnlineDataContext(ConfigurationManager.ConnectionStrings["SachOnlineConnectionString"].ConnectionString);
 
         // GET: User
         public ActionResult Index()
@@ -23,25 +22,19 @@ namespace SachOnline.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult DangKy(FormCollection collection, KHACHHANG kh)
         {
-            dbSachOnlineDataContext data = new dbSachOnlineDataContext("Data Source=MSI\\SQLEXPRESS;Initial Catalog=SachOnline;Integrated Security=True");
             var sHoTen = collection["HoTen"];
             var sTenDN = collection["TenDN"];
-
             var sMatKhau = collection["MatKhau"];
-
-            var sMatKhauNhapLai = collection["“MatKhauNL"];
-
+            var sMatKhauNhapLai = collection["MatKhauNL"];
             var sDiaChi = collection["DiaChi"];
-
             var sEmail = collection["Email"];
-
             var sDienThoai = collection["DienThoai"];
+            var dNgaySinh = collection["NgaySinh"]; // Không cần định dạng ngày
 
-
-            var dNgaySinh = String.Format("{@:MM/dd/yyyy}", collection["NgaySinh"]);
             if (String.IsNullOrEmpty(sHoTen))
             {
                 ViewData["err1"] = "Họ tên không được rỗng";
@@ -52,53 +45,48 @@ namespace SachOnline.Controllers
             }
             else if (String.IsNullOrEmpty(sMatKhau))
             {
-                ViewData["err3"] = "Tên đăng nhập không được rỗng";
+                ViewData["err3"] = "Mật khẩu không được rỗng";
             }
             else if (String.IsNullOrEmpty(sMatKhauNhapLai))
             {
-                ViewData["err4"] = "Tên đăng nhập không được rỗng";
+                ViewData["err4"] = "Nhập lại mật khẩu không được rỗng";
             }
-            else if (String.IsNullOrEmpty(sMatKhauNhapLai))
+            else if (sMatKhau != sMatKhauNhapLai)
             {
-                ViewData["err4"] = "Tên đăng nhập không được rỗng";
+                ViewData["err4"] = "Mật khẩu nhập lại không khớp";
             }
             else if (String.IsNullOrEmpty(sDiaChi))
             {
-                ViewData["err5"] = "Tên đăng nhập không được rỗng";
+                ViewData["err5"] = "Địa chỉ không được rỗng";
             }
             else if (String.IsNullOrEmpty(sEmail))
             {
-                ViewData["err6"] = "Tên đăng nhập không được rỗng";
+                ViewData["err6"] = "Email không được rỗng";
             }
-            else if (db.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == sTenDN != null))
+            else if (db.KHACHHANGs.Any(n => n.TaiKhoan == sTenDN))
             {
                 ViewBag.ThongBao = "Tên đăng nhập đã tồn tại";
             }
-            else if (db.KHACHHANGs.SingleOrDefault(n => n.Email == sEmail != null))
+            else if (db.KHACHHANGs.Any(n => n.Email == sEmail))
             {
-                ViewBag.ThongBao = "Email đã được sử dung";
+                ViewBag.ThongBao = "Email đã được sử dụng";
             }
             else
             {
                 kh.HoTen = sHoTen;
-
                 kh.TaiKhoan = sTenDN;
                 kh.MatKhau = sMatKhau;
-
                 kh.Email = sEmail;
-
                 kh.DiaChi = sDiaChi;
-
                 kh.DienThoai = sDienThoai;
-
                 kh.NgaySinh = DateTime.Parse(dNgaySinh);
-                db.KHACHHANGs.InsertOnSubmit(kh); 
+
+                db.KHACHHANGs.InsertOnSubmit(kh);
                 db.SubmitChanges();
                 return RedirectToAction("DangNhap");
             }
-            return this.DangKy();
+            return View();
         }
-
         [HttpGet]
         public ActionResult DangNhap()
         {
@@ -132,11 +120,8 @@ namespace SachOnline.Controllers
                 }
 
             }
-            return View("");
+            return View();
 
         }
     }
-    D:\SachOnlineTHW\SachOnlineTHW\SachOnline\SachOnline\Views\User\DangNhap.cshtml
-
-}
 }

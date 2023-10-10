@@ -1,6 +1,7 @@
 ﻿using SachOnline.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,15 +9,27 @@ using System.Web.Mvc;
 namespace SachOnline.Controllers
 {
     public class GioHangController : Controller
-    {   
-        dbSachOnlineDataContext db = new dbSachOnlineDataContext("Data Source=MSI\\SQLEXPRESS;Initial Catalog=SachOnline;Integrated Security=True");
+    {
+        private dbSachOnlineDataContext db = new dbSachOnlineDataContext(ConfigurationManager.ConnectionStrings["SachOnlineConnectionString"].ConnectionString);
+        // GET: GioHang
+        public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult GioHangPartial()
+        {
+            ViewBag.TongSoLuong = TongSoLuong();
+            ViewBag.TongTien = TongTien();
+            return PartialView();
+
+        }
         public List<GioHang> LayGioHang()
         {
             List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
             if (lstGioHang == null)
             {
                 lstGioHang = new List<GioHang>();
-                Session["GioHag"]=lstGioHang;
+                Session["GioHang"] = lstGioHang;
             }
             return lstGioHang;
         }
@@ -37,12 +50,12 @@ namespace SachOnline.Controllers
         }
         private int TongSoLuong()
         {
-        int iTongSoLuong = 0;
-        List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+            int iTongSoLuong = 0;
+            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
             if (lstGioHang != null)
             {
                 iTongSoLuong = lstGioHang.Sum(n => n.iSoLuong);
-                
+
             }
             return iTongSoLuong;
         }
@@ -61,20 +74,12 @@ namespace SachOnline.Controllers
             List<GioHang> lstGioHang = LayGioHang();
             if (lstGioHang.Count == 0)
             {
-                return RedirectToAction("Index","SachOnline");
+                return RedirectToAction("Index", "SachOnline");
 
             }
             ViewBag.TongSoLuong = TongSoLuong();
             ViewBag.TongTien = TongTien();
             return View(lstGioHang);
         }
-        public ActionResult GioHangPartial()
-        {
-            ViewBag.TongSoLuong = TongSoLuong();
-            ViewBag.TongTien = TongTien();
-            return PartialView();
-
-        }
     }
-   
-}
+}   

@@ -1,9 +1,9 @@
-﻿@using SachOnline.Models
-@model List<GioHang>
+﻿
 @{
     ViewBag.Title = "GioHang";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
+
 <h2 style="text-align:center;">THÔNG TIN GIỎ HÀNG</h2>
 <table border="1">
     <tr style="background-color:#9ca1a4; font-size:15px; font-weight:bold; text-align:center;">
@@ -52,15 +52,5 @@
             Tổng tiền: @string.Format("{0:#,##0,0}", @ViewBag.TongTien) VNĐ
         </td>
     </tr>
-    <tr style="font-weight:bold; color:blue; text-align:right;">
-        <td colspan="9">
-            @Html.ActionLink("Xóa giỏ hàng", "XoaGioHang")
-        </td>
-    </tr>
-    <tr style="font-weight:bold; color:blue; text-align:center;">
-        <td colspan="9">
-            @Html.ActionLink("ĐẶT HÀNG", "DatHang", "GioHang")
-        </td>
-    </tr>
-
 </table>
+

@@ -13,13 +13,88 @@
     <nav class="navbar navbar-inverse">
         <!--navbar-fixed-top-->
         <div class="container">
-            @Html.Action("NavPartial", "SachOnline")
-            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-
+                        target="#navbar1" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">SÁCH ONLINE</a>
+                <a class="navbar-brand" href="#">TRANG CHỦ</a>
+                <a class="navbar-brand" href="#">GIỚI THIỆU</a>
+                <a class="navbar-brand" href="#">LIÊN HỆ</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-expanded="false" aria-haspopup="true">Người dùng<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Đăng ký</a> </li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+                    </ul>
+                </li>
+                <li>
+                    @Html.Action("GioHangPartial", "GioHang")
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm">
+                </div>
+                <button type="submit" class="btn btn-default">Tìm</button>
+            </form>
         </div>
     </nav>
     <div class="container">
-        @Html.Action("SliderPartial", "SachOnline")
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div id="carousel1" class="carousel slide">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel1" data-slide-to="0" class="active"> </li>
+                        <li data-target="#carousel1" data-slide-to="1" class="active1"> </li>
+                        <li data-target="#carousel1" data-slide-to="2" class="active2"> </li>
+                        <li data-target="#carousel1" data-slide-to="3" class="active3"> </li>
+                        <li data-target="#carousel1" data-slide-to="4" class="active4"> </li>
+                        <li data-target="#carousel1" data-slide-to="5" class="active5"> </li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img class="img-responsive" src="~/Images/Slider/01.jpg" alt="thumb">
+                            <div class="carousel-caption"> Quảng cáo 1 </div>
+                        </div>
+                        <div class="item active2">
+                            <img class="img-responsive" src="~/Images/Slider/02.jpg" alt="thumb">
+                            <div class="carousel-caption"> Quảng cáo 2 </div>
+                        </div>
+                        <div class="item active2">
+                            <img class="img-responsive" src="~/Images/Slider/03.jpg" alt="thumb">
+                            <div class="carousel-caption"> Quảng cáo 3 </div>
+                        </div>
+                        <div class="item active3">
+                            <img class="img-responsive" src="~/Images/Slider/04.jpg" alt="thumb">
+                            <div class="carousel-caption"> Quảng cáo 4 </div>
+                        </div>
+                        <div class="item active4">
+                            <img class="img-responsive" src="~/Images/Slider/05.jpg" alt="thumb">
+                            <div class="carousel-caption"> Quảng cáo 5 </div>
+                        </div>
+                        <div class="item active5">
+                            <img class="img-responsive" src="~/Images/Slider/06.jpg" alt="thumb">
+                            <div class="carousel-caption"> Quảng cáo 6 </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#carousel1" data-slide="prev">
+                        <span class="icon-prev"></span>
+                    </a> <a class="right carousel-control" href="#carousel1" data-slide="next">
+                        <span class="icon-next"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
+    </head>
     <body>
 
         <div class="container">
