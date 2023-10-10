@@ -97,7 +97,13 @@ namespace SachOnline.Controllers
             }
             return RedirectToAction("GioHang");
         }
-
+        
+        public ActionResult XoaGioHang()
+        {
+            List<GioHang> lstGioHang = LayGioHang();
+            lstGioHang.Clear();
+            return RedirectToAction("Index","SachOnline");
+        }
         public ActionResult GioHang()
         {
             List<GioHang> lstGioHang = LayGioHang();
