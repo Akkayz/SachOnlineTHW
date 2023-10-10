@@ -10,12 +10,14 @@ namespace SachOnline.Controllers
 {
     public class UserController : Controller
     {
-        dbSachOnlineDataContext data  = new dbSachOnlineDataContext("Data Source=MSI\\SQLEXPRESS;Initial Catalog=SachOnline;Integrated Security=True");
+        dbSachOnlineDataContext data = new dbSachOnlineDataContext("Data Source=MSI\\SQLEXPRESS;Initial Catalog=SachOnline;Integrated Security=True");
+
         // GET: User
         public ActionResult Index()
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult DangKy()
         {
@@ -68,11 +70,11 @@ namespace SachOnline.Controllers
             {
                 ViewData["err6"] = "Tên đăng nhập không được rỗng";
             }
-            else if (db.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan==sTenDN != null))
+            else if (db.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == sTenDN != null))
             {
                 ViewBag.ThongBao = "Tên đăng nhập đã tồn tại";
             }
-            else if (db.KHACHHANGs.SingleOrDefault(n => n.Email== sEmail != null))
+            else if (db.KHACHHANGs.SingleOrDefault(n => n.Email == sEmail != null))
             {
                 ViewBag.ThongBao = "Email đã được sử dung";
             }
@@ -96,10 +98,11 @@ namespace SachOnline.Controllers
             }
             return this.DangKy();
         }
+
         [HttpGet]
         public ActionResult DangNhap()
         {
-            return View("DangNhap");
+            return View();
         }
         [HttpPost]
         public ActionResult DangNhap(FormCollection collection)
@@ -129,10 +132,11 @@ namespace SachOnline.Controllers
                 }
 
             }
-            return View("DangNhap");
+            return View("");
 
         }
     }
-        
+    D:\SachOnlineTHW\SachOnlineTHW\SachOnline\SachOnline\Views\User\DangNhap.cshtml
+
 }
 }
