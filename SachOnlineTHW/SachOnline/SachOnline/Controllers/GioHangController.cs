@@ -86,7 +86,18 @@ namespace SachOnline.Controllers
             }
             return RedirectToAction("GioHang");
         }
-         
+        
+        public ActionResult CapNhatGioHang(int iMaSach, FormCollection f)
+        {
+            List<GioHang> lstGioHang = LayGioHang();
+            GioHang sp = lstGioHang.SingleOrDefault(n => n.iMaSach == iMaSach);             
+            if (sp != null)
+            {
+                sp.iSoLuong = int.Parse(f["txtSoLuong"].ToString());
+            }
+            return RedirectToAction("GioHang");
+        }
+
         public ActionResult GioHang()
         {
             List<GioHang> lstGioHang = LayGioHang();
