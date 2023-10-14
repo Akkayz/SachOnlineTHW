@@ -47,10 +47,13 @@ namespace SachOnline.Controllers
         {
             return PartialView();
         }
-        public ActionResult SachTheoNhaXuatBan(int id)
+        public ActionResult SachTheoNhaXuatBan(int? iMaNXB, int? page)
         {
-            var sach = from s in data.SACHes where s.MaNXB == id select s;
-            return View(sach);
+            ViewBag.MaNXB = iMaNXB; // Lấy giá trị của iMaCD
+            int iSize = 3;
+            int iPageNum = (page ?? 1);
+            var sach = from s in data.SACHes where s.MaNXB == iMaNXB.Value select s;
+            return View(sach.ToPagedList(iPageNum, iSize));
         }
         public ActionResult SachTheoChuDe(int? iMaCD, int? page)
         {
