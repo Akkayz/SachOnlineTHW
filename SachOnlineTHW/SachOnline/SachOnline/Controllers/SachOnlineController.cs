@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using SachOnline.Models;
 using System.Configuration;
+using PagedList;
+using PagedList.Mvc;
 
 namespace SachOnline.Controllers
 {
@@ -51,10 +52,21 @@ namespace SachOnline.Controllers
             var sach = from s in data.SACHes where s.MaNXB == id select s;
             return View(sach);
         }
-        public ActionResult SachTheoChuDe(int id)
+        public ActionResult SachTheoChuDe(int? iMaCD, int? page)
         {
-            var sach = from s in data.SACHes where s.MaCD == id select s;
-            return View(sach);
+            if (iMaCD != null)
+            {
+                ViewBag.MaCD = iMaCD.Value; // Lấy giá trị của iMaCD
+                int iSize = 3;
+                int iPageNum = (page ?? 1);
+                var sach = from s in data.SACHes where s.MaCD == iMaCD.Value select s;
+                return View(sach.ToPagedList(iPageNum, iSize));
+            }
+            else
+            {
+                // Xử lý khi iMaCD là null
+                return View("ChuDeKhongTonTai");
+            }
         }
         public ActionResult ChiTietSach(int id)
         {

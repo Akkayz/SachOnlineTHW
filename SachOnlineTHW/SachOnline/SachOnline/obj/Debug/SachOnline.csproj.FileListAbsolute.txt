@@ -339,3 +339,7 @@ E:\Source\Repos\khanhdo137\SachOnlineTHW\SachOnlineTHW\SachOnline\SachOnline\bin
 E:\Source\Repos\khanhdo137\SachOnlineTHW\SachOnlineTHW\SachOnline\SachOnline\bin\roslyn\VBCSCompiler.exe.config
 E:\Source\Repos\khanhdo137\SachOnlineTHW\SachOnlineTHW\SachOnline\SachOnline\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 E:\Source\Repos\khanhdo137\SachOnlineTHW\SachOnlineTHW\SachOnline\SachOnline\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Source\Repos\SachOnlineTHW\SachOnlineTHW\SachOnline\SachOnline\bin\PagedList.dll
+E:\Source\Repos\SachOnlineTHW\SachOnlineTHW\SachOnline\SachOnline\bin\PagedList.Mvc.dll
+E:\Source\Repos\SachOnlineTHW\SachOnlineTHW\SachOnline\SachOnline\bin\PagedList.xml
+E:\Source\Repos\SachOnlineTHW\SachOnlineTHW\SachOnline\SachOnline\bin\PagedList.Mvc.xml
