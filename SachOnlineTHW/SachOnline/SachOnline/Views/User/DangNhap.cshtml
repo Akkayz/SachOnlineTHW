@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "DangNhap";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
@@ -14,25 +13,25 @@
 <table align="center">
     @using (Html.BeginForm())
     {
-        @Html.ValidationSummary(true)
-        <tr>
-            <td>Tên đăng nhập: </td>
-            <td>
-                @Html.TextBox("TenDN")
-                @ViewData["Err1"]
-            </td>
-        </tr>
-        <tr>
-            <td>Mật khẩu: </td>
-            <td>
-                @Html.Password("MatKhau") @ViewBag.Err2
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Đăng nhập" />
-            </td>
-        </tr>
+    @Html.ValidationSummary(true)
+    <tr>
+        <td>Tên đăng nhập: </td>
+        <td>
+            @Html.TextBox("TenDN")
+            @ViewData["Err1"]
+        </td>
+    </tr>
+    <tr>
+        <td>Mật khẩu: </td>
+        <td>
+            @Html.Password("MatKhau") @ViewBag.Err2
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <input type="submit" value="Đăng nhập" />
+        </td>
+    </tr>
        }
 </table>

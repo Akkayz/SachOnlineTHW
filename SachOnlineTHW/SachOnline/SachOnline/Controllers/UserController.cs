@@ -2,7 +2,6 @@
 using System;
 using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SachOnline.Controllers
@@ -33,7 +32,7 @@ namespace SachOnline.Controllers
             var sDiaChi = collection["DiaChi"];
             var sEmail = collection["Email"];
             var sDienThoai = collection["DienThoai"];
-            var dNgaySinh = String.Format("{0:MM/dd/yyyy}",collection["NgaySinh"]); // Không cần định dạng ngày
+            var dNgaySinh = String.Format("{0:MM/dd/yyyy}", collection["NgaySinh"]); // Không cần định dạng ngày
 
             if (String.IsNullOrEmpty(sHoTen))
             {
@@ -87,11 +86,13 @@ namespace SachOnline.Controllers
             }
             return View();
         }
+
         [HttpGet]
         public ActionResult DangNhap()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult DangNhap(FormCollection collection)
         {
@@ -107,7 +108,6 @@ namespace SachOnline.Controllers
             }
             else
             {
-
                 KHACHHANG kh = db.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == sTenDN && n.MatKhau == sMatKhau);
                 if (kh != null)
                 {
@@ -118,10 +118,8 @@ namespace SachOnline.Controllers
                 {
                     ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không đúng";
                 }
-
             }
             return View();
-
         }
     }
 }

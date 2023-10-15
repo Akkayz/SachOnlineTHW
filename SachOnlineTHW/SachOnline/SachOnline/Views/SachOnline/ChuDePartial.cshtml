@@ -5,7 +5,7 @@
     </li>
     @foreach (var item in Model)
     {
-        <a href="@Url.Action("SachTheoChuDe","SachOnline", new { iMaCD = item.MaCD})"
-           class="list-group-item">@item.TenChuDe</a>
+    <a href="@Url.Action("SachTheoChuDe","SachOnline", new { iMaCD = item.MaCD})"
+       class="list-group-item">@item.TenChuDe</a>
     }
 </ul>
