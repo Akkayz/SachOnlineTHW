@@ -55,7 +55,7 @@ namespace SachOnline.Controllers
 
         public ActionResult SachTheoNhaXuatBan(int? iMaNXB, int? page)
         {
-            ViewBag.MaNXB = iMaNXB; 
+            ViewBag.MaNXB = iMaNXB;
             int iSize = 3;
             int iPageNum = (page ?? 1);
             var sach = from s in data.SACHes where s.MaNXB == iMaNXB.Value select s;
@@ -77,6 +77,11 @@ namespace SachOnline.Controllers
                        where s.MaSach == id
                        select s;
             return View(sach.Single());
+        }
+
+        public ActionResult LoginLogout()
+        {
+            return PartialView("LoginLogoutPartial");
         }
 
         private List<SACH> LaySachBanNhieu(int count)
