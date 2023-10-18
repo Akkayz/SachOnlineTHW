@@ -110,13 +110,15 @@ namespace SachOnline.Controllers
         [HttpGet]
         public ActionResult DatHang()
         {
-            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
-            {
-                return RedirectToAction("DangNhap", "User");
-            }
             if (Session["GioHang"] == null)
             {
                 return RedirectToAction("Index", "SachOnline");
+            }
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
+            {
+                // Nếu chưa đăng nhập, lưu URL của trang đặt hàng vào Session để sau này quay lại
+                Session["ReturnUrl"] = Url.Action("DatHang", "GioHang");
+                return RedirectToAction("DangNhap", "User");
             }
             List<GioHang> lstGioHang = LayGioHang();
             ViewBag.TongSoLuong = TongSoLuong();

@@ -114,17 +114,16 @@ namespace SachOnline.Controllers
                     // Đăng nhập thành công, lưu thông tin người dùng vào Session
                     Session["TaiKhoan"] = kh;
 
-                    // Chuyển hướng người dùng đến trang chính hoặc trang đặt hàng tùy theo ngữ cảnh
-                    if (Request.UrlReferrer != null && Request.UrlReferrer.PathAndQuery.Contains("DatHang"))
+                    // Kiểm tra xem người dùng có từ trang giỏ hàng không
+                    string returnUrl = Session["ReturnUrl"] as string;
+                    if (!string.IsNullOrEmpty(returnUrl))
                     {
-                        // Nếu người dùng nhấn nút "ĐẶT HÀNG", chuyển hướng đến trang đặt hàng
-                        return RedirectToAction("GioHang", "GioHang");
+                        Session["ReturnUrl"] = null;
+                        return Redirect(returnUrl);
                     }
-                    else
-                    {
-                        // Mặc định, chuyển hướng đến trang chính
-                        return RedirectToAction("Index", "SachOnline");
-                    }
+
+                    // Nếu không, chuyển hướng về trang chính
+                    return RedirectToAction("Index", "SachOnline");
                 }
                 else
                 {
