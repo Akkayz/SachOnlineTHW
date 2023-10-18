@@ -111,8 +111,20 @@ namespace SachOnline.Controllers
                 KHACHHANG kh = db.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == sTenDN && n.MatKhau == sMatKhau);
                 if (kh != null)
                 {
-                    ViewBag.ThongBao = "Chúc mừng đăng nhập thành công";
+                    // Đăng nhập thành công, lưu thông tin người dùng vào Session
                     Session["TaiKhoan"] = kh;
+
+                    // Chuyển hướng người dùng đến trang chính hoặc trang đặt hàng tùy theo ngữ cảnh
+                    if (Request.UrlReferrer != null && Request.UrlReferrer.PathAndQuery.Contains("DatHang"))
+                    {
+                        // Nếu người dùng nhấn nút "ĐẶT HÀNG", chuyển hướng đến trang đặt hàng
+                        return RedirectToAction("GioHang", "GioHang");
+                    }
+                    else
+                    {
+                        // Mặc định, chuyển hướng đến trang chính
+                        return RedirectToAction("Index", "SachOnline");
+                    }
                 }
                 else
                 {
