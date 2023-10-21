@@ -98,5 +98,41 @@ namespace SachOnline.Areas.Admin.Controllers
             }
             return View(sach);
         }
+        public ActionResult Delete(int id)
+        {
+            var sach = db.SACHes.SingleOrDefault(n => n.MaSach == id);
+            if (sach == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(sach);
+        }
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteForm(int id, FormCollection f)
+        {
+            var sach = db.SACHes.SingleOrDefault(n => n.MaSach == id);
+
+            if (sach== null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            var ctdh = db.CHITIETDATHANGs.Where(ct => ct.MaSach == id);
+            if (ctdh.Count() > 0)
+            {
+                ViewBag.ThongBao = "Sách này đang có trong bảng chi tiết đặt hàng <br>" + "Nếu muốn xóa thì phải xóa hết mã sách này trong bảng chi tiết đặt hàng";
+                return View(sach);
+            }
+            var Vietsach = db.VIETSACHes.Where(vs => vs.MaSach == id).ToList();
+            if (Vietsach != null)
+            {
+                db.VIETSACHes.DeleteAllOnSubmit(Vietsach);
+                db.SubmitChanges();
+            }
+            db.SACHes.DeleteOnSubmit(sach);
+            db.SubmitChanges();
+           return RedirectToAction("Index");
+        }
     }
-}
+}   
