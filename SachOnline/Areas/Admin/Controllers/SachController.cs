@@ -88,5 +88,15 @@ namespace SachOnline.Areas.Admin.Controllers
                 return View();
             }
         }
+        public ActionResult Details(int id)
+        {
+            var sach = db.SACHes.SingleOrDefault(n => n.MaSach == id);
+            if (sach == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(sach);
+        }
     }
 }
