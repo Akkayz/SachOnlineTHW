@@ -126,6 +126,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SachController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\SachOnlineController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -240,6 +241,9 @@
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Sach\Index.cshtml" />
     <None Include="Models\dbSachOnline.dbml.layout">
       <DependentUpon>dbSachOnline.dbml</DependentUpon>
     </None>
