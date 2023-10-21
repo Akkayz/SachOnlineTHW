@@ -113,7 +113,7 @@ namespace SachOnline.Areas.Admin.Controllers
         {
             var sach = db.SACHes.SingleOrDefault(n => n.MaSach == id);
 
-            if (sach== null)
+            if (sach == null)
             {
                 Response.StatusCode = 404;
                 return null;
@@ -132,7 +132,53 @@ namespace SachOnline.Areas.Admin.Controllers
             }
             db.SACHes.DeleteOnSubmit(sach);
             db.SubmitChanges();
-           return RedirectToAction("Index");
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var sach = db.SACHes.SingleOrDefault(n => n.MaSach == id);
+            if (sach == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            ViewBag.MaCD = new SelectList(db.CHUDEs.ToList().OrderBy(n => n.TenChuDe), "MaCD", "TenChuDe", sach.MaCD);
+            ViewBag.MaNXB = new SelectList(db.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB", sach.MaNXB);
+            return View(sach);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(FormCollection f, HttpPostedFileBase fFileUpload)
+        {
+            var sach = db.SACHes.SingleOrDefault(n => n.MaSach == int.Parse(f["iMaSach"]));
+
+            ViewBag.MaCD = new SelectList(db.CHUDEs.ToList().OrderBy(n => n.TenChuDe), "MaCD", "TenChuDe", sach.MaCD);
+            ViewBag.MaNXB = new SelectList(db.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB", sach.MaNXB);
+            if (ModelState.IsValid)
+            {
+                if (fFileUpload != null)
+                {
+                    var sFileName = Path.GetFileName(fFileUpload.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Images"), sFileName);
+                    if (!System.IO.File.Exists(path))
+                    {
+                        fFileUpload.SaveAs(path);
+                    }
+                    sach.AnhBia = sFileName;
+
+                }
+                sach.TenSach = f["sTensach"];
+                sach.MoTa = f["sMoTa"];
+                sach.NgayCapNhat = Convert.ToDateTime(f["dNgayCapNhat"]);
+                sach.SoLuongBan = int.Parse(f["iSoLuong"]);
+                sach.GiaBan = decimal.Parse(f["mGiaBan"]);
+                sach.MaCD = int.Parse(f["MaCD"]);
+                sach.MaNXB = int.Parse(f["MaNXB"]);
+                db.SubmitChanges();
+                return RedirectToAction("Index");
+            }
+            return View(sach);
         }
     }
-}   
+}
