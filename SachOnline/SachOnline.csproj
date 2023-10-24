@@ -711,6 +711,7 @@
     <Content Include="Areas\Admin\Views\NhaXuatBan\Details.cshtml" />
     <Content Include="Areas\Admin\Views\NhaXuatBan\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\NhaXuatBan\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\Details.cshtml" />
     <None Include="Models\dbSachOnline.dbml.layout">
       <DependentUpon>dbSachOnline.dbml</DependentUpon>
     </None>

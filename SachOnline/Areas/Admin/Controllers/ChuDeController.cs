@@ -23,7 +23,15 @@ namespace SachOnline.Areas.Admin.Controllers
         // GET: Admin/ChuDe/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            // Lấy thông tin "Chủ đề" cần hiển thị chi tiết từ cơ sở dữ liệu
+            CHUDE chude = db.CHUDEs.FirstOrDefault(c => c.MaCD == id);
+
+            if (chude == null)
+            {
+                return HttpNotFound(); // Trả về HTTP 404 nếu không tìm thấy "Chủ đề"
+            }
+
+            return View(chude);
         }
 
         // GET: Admin/ChuDe/Create
