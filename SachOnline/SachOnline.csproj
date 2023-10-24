@@ -127,6 +127,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ChuDeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NhaXuatBanController.cs" />
     <Compile Include="Areas\Admin\Controllers\SachController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\SachOnlineController.cs" />
@@ -705,6 +706,11 @@
     <Content Include="Areas\Admin\Views\ChuDe\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ChuDe\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ChuDe\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaXuatBan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaXuatBan\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaXuatBan\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaXuatBan\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaXuatBan\Delete.cshtml" />
     <None Include="Models\dbSachOnline.dbml.layout">
       <DependentUpon>dbSachOnline.dbml</DependentUpon>
     </None>

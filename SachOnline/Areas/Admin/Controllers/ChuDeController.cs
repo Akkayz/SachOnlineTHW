@@ -38,6 +38,12 @@ namespace SachOnline.Areas.Admin.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(chude.TenChuDe))
+                {
+                    ModelState.AddModelError("TenChuDe", "Vui lòng nhập tên chủ đề.");
+                    return View(chude);
+                }
+
                 if (ModelState.IsValid)
                 {
                     db.CHUDEs.InsertOnSubmit(chude);
@@ -68,13 +74,18 @@ namespace SachOnline.Areas.Admin.Controllers
             return View(chude);
         }
 
-        // POST: Admin/ChuDe/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, string NewTenChuDe)
         {
             try
             {
+                if (string.IsNullOrEmpty(NewTenChuDe))
+                {
+                    ModelState.AddModelError("NewTenChuDe", "Vui lòng nhập tên chủ đề.");
+                    return View();
+                }
+
                 // Lấy "Chủ đề" cần chỉnh sửa từ cơ sở dữ liệu
                 CHUDE existingChuDe = db.CHUDEs.FirstOrDefault(c => c.MaCD == id);
 
