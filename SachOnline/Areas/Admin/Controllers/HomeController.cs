@@ -9,7 +9,7 @@ namespace SachOnline.Areas.Admin.Controllers
     {
         private dbSachOnlineDataContext db = new dbSachOnlineDataContext(ConfigurationManager.ConnectionStrings["SachOnlineConnectionString"].ConnectionString);
 
-        // GET: Admin/Home
+        [AdminAuthorize]
         public ActionResult Index()
         {
             return View();

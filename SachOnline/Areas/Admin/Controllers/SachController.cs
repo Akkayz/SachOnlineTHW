@@ -14,10 +14,10 @@ using System.Diagnostics;
 namespace SachOnline.Areas.Admin.Controllers
 
 {
+    [AdminAuthorize]
     public class SachController : Controller
 
     {
-
         private dbSachOnlineDataContext db = new dbSachOnlineDataContext(ConfigurationManager.ConnectionStrings["SachOnlineConnectionString"].ConnectionString);
 
         // GET: Admin/Sach
@@ -28,8 +28,8 @@ namespace SachOnline.Areas.Admin.Controllers
             int iPageNum = (page ?? 1);
             int iPageSize = 7;
             return View(db.SACHes.ToList().OrderBy(n => n.MaSach).ToPagedList(iPageNum, iPageSize));
-
         }
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -38,6 +38,7 @@ namespace SachOnline.Areas.Admin.Controllers
 
             return View();
         }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Create(SACH sach, FormCollection f, HttpPostedFileBase fFileUpload)
@@ -45,11 +46,8 @@ namespace SachOnline.Areas.Admin.Controllers
             ViewBag.MaCD = new SelectList(db.CHUDEs.ToList().OrderBy(n => n.TenChuDe), "MaCD", "TenChuDe");
             ViewBag.MaNXB = new SelectList(db.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB");
 
-
-
             if (fFileUpload == null)
             {
-
                 //Néi. dung théng béo yéu cau chon anh bia
 
                 ViewBag.ThongBao = "Hãy chọn ảnh bìa";
@@ -88,6 +86,7 @@ namespace SachOnline.Areas.Admin.Controllers
                 return View();
             }
         }
+
         public ActionResult Details(int id)
         {
             var sach = db.SACHes.SingleOrDefault(n => n.MaSach == id);
@@ -98,6 +97,7 @@ namespace SachOnline.Areas.Admin.Controllers
             }
             return View(sach);
         }
+
         public ActionResult Delete(int id)
         {
             var sach = db.SACHes.SingleOrDefault(n => n.MaSach == id);
@@ -108,6 +108,7 @@ namespace SachOnline.Areas.Admin.Controllers
             }
             return View(sach);
         }
+
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteForm(int id, FormCollection f)
         {
@@ -134,6 +135,7 @@ namespace SachOnline.Areas.Admin.Controllers
             db.SubmitChanges();
             return RedirectToAction("Index");
         }
+
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -147,6 +149,7 @@ namespace SachOnline.Areas.Admin.Controllers
             ViewBag.MaNXB = new SelectList(db.NHAXUATBANs.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB", sach.MaNXB);
             return View(sach);
         }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Edit(FormCollection f, HttpPostedFileBase fFileUpload)
@@ -166,7 +169,6 @@ namespace SachOnline.Areas.Admin.Controllers
                         fFileUpload.SaveAs(path);
                     }
                     sach.AnhBia = sFileName;
-
                 }
                 sach.TenSach = f["sTensach"];
                 sach.MoTa = f["sMoTa"];

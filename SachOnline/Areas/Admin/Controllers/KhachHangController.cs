@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace SachOnline.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class KhachHangController : Controller
     {
         private dbSachOnlineDataContext db = new dbSachOnlineDataContext(ConfigurationManager.ConnectionStrings["SachOnlineConnectionString"].ConnectionString);
